@@ -1,0 +1,201 @@
+Amanda Hinchman and Renn Jervis 
+CSC-207-01 
+				Lab Write-up: Lab on Stream Input in Java
+2) a) The console prints "java.io.FileNotFoundException: 
+		"etest.data (No such file or directory)", meaning that it 
+		couldn't find the file within the Lab on Stream Input in Java
+		
+   b)	  Exception in thread "main" java.lang.Error: Unresolved compilation problem: 
+	Unhandled exception type FileNotFoundException
+at testScores.TestScanner1.main(TestScanner1.java:22)
+
+The program doesn't run because it can't compile, because it finds an unhandled error.
+
+   c) 
+   
+      Name                      Test
+  First    Last		 1 	2 	3      Average
+Egbert Bacon      	88	85	91	88.0
+William Hemingway 	79	63	68	70.0
+Frances Homer     	94	86	81	87.0
+PoWer MacHinery   	84	91	93	89.33333333333333
+R. McDonald       	82	96	94	90.66666666666667
+L. Bo-Peep        	76	78	82	78.66666666666667
+A.N. Onymous      	72	81	76	76.33333333333333
+Henry Shakespeare 	90	92	88	90.0
+I.M. Silly        	0	70	85	51.666666666666664
+P.Arty Time       	62	9	59	43.333333333333336
+MacK. Walker      	93	87	89	89.66666666666667
+
+Maximum     		94	96	94
+Minimum   		    0	9	59
+
+d) 
+      Name                      Test
+First    Last		 1 	2 	3      Average
+Exception in thread "main" java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.<init>(Integer.java:867)
+	at testScores.TestScanner1.main(TestScanner1.java:56)
+	
+	The program will not finish running because it tries to parse empty
+	whitespaces to a integer, which throws an exception
+	
+	e)
+	      Name                      Test
+First    Last		 1 	2 	3      Average
+Exception in thread "main" java.lang.NumberFormatException: For input string: "88     85"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.<init>(Integer.java:867)
+	at testScores.TestScanner1.main(TestScanner1.java:56)
+	
+	The program again does not finish running because it attempts
+	to read and format two test scores separated by spaces.
+	
+3.
+a) 	java.io.FileNotFoundException: testy.data (No such file or directory)
+	meaning that it couldn't find the file within the Lab on Stream 
+	Input in Java
+	
+b) Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
+	Unhandled exception type FileNotFoundException
+	Unhandled exception type IOException
+	Unhandled exception type IOException
+
+	at testScores.TestBufferedReader1.main(TestBufferedReader1.java:21)
+	
+The program doesn't run because it can't compile, because it finds an unhandled error.	
+
+c) The program runs successfully:
+
+	      Name                      Test
+First    Last  		 1	 2	 3      Average
+Egbert Bacon      	88	85	88	87.0
+William Hemingway 	79	63	88	76.66666666666667
+Frances Homer     	94	86	88	89.33333333333333
+PoWer MacHinery   	84	91	88	87.66666666666667
+R. McDonald       	82	96	88	88.66666666666667
+L. Bo-Peep        	76	78	88	80.66666666666667
+A.N. Onymous      	72	81	88	80.33333333333333
+Henry Shakespeare 	90	92	88	90.0
+I.M. Silly        	0	70	88	52.666666666666664
+P.Arty Time       	62	9	88	53.0
+MacK. Walker      	93	87	88	89.33333333333333
+
+Maximum     		94	96	88
+Minimum     		0	9	88
+
+e) The program again does not finish running because it attempts
+	to read and format two test scores separated by spaces.
+      Name                      Test
+First    Last  		 1	 2	 3      Average
+Exception in thread "main" java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.<init>(Integer.java:867)
+	at testScores.TestBufferedReader1.main(TestBufferedReader1.java:55)
+	
+f)       Name                      Test
+First    Last  		 1	 2	 3      Average
+Exception in thread "main" java.lang.NumberFormatException: For input string: "88     85"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.<init>(Integer.java:867)
+	at testScores.TestBufferedReader1.main(TestBufferedReader1.java:55)
+	
+The program again does not finish running because it attempts
+	to read and format two test scores separated by spaces.
+	
+4.
+a) 	package testScores;
+
+import java.util.Scanner;
+
+public class Greet
+{
+
+  public static void main (String args[])
+  {   
+    // use System.in to initialize scanner
+    Scanner fileIn = new Scanner (System.in);
+
+    System.out.print("What is your name? ");
+    //read entire line
+    String name = fileIn.nextLine();
+    System.out.println("Have a nice day " + name+ "!");
+  }//main (String[])
+}//class Greet
+
+/*output:
+*
+* What is your name? REnn
+* Have a nice day REnn!
+*/
+
+b) 	package testScores;
+
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class GreetBuff
+{
+  public static void main (String args[])
+  {
+    
+    try
+    { 
+      InputStreamReader istream = new InputStreamReader (System.in);
+     // use FileReader object to initialize scanner
+    BufferedReader fileIn = new BufferedReader (istream);
+
+    System.out.print("What is your name? ");
+    //read entire line
+    String name = fileIn.readLine();
+    System.out.println("Have a nice day " + name+ "!");
+    }// try
+    catch (IOException e)
+    {   // identify any error that arises
+        System.err.println (e);
+    } //catch
+  }// main (String[])0
+}// GreetBuff
+
+/* output:
+*
+* What is your name? Amanda
+* Have a nice day Amanda!
+*/
+
+b.ii
+package testScores;
+
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class GreetBuff 
+{
+  public static void main (String args[]) throws Exception
+  {
+    
+      InputStreamReader istream = new InputStreamReader (System.in);
+     // use FileReader object to initialize scanner
+    BufferedReader fileIn = new BufferedReader (istream);
+
+    System.out.print("What is your name? ");
+    //read entire line
+    String name = fileIn.readLine();
+    System.out.println("Have a nice day " + name+ "!");
+
+
+  }// main (String[])
+}// GreetBuff
+
+/* output:
+*
+* What is your name?  Renn
+* Have a nice day  Renn!
+*/
