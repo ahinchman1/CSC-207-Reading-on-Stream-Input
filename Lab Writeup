@@ -100,7 +100,7 @@ MacK. Walker      	93	87	88	89.33333333333333
 Maximum     		94	96	88
 Minimum     		0	9	88
 
-e) As with the earlier class when we remove a column of test scores this
+d) As with the earlier class when we remove a column of test scores this
 program does not finish running because it attempts to read and
 format the null string into an integer, which throws an exception.
       Name                      Test
@@ -111,7 +111,7 @@ java:65)at java.lang.Integer.parseInt(Integer.java:592)at java.lang.Integer.
 <init>(Integer.java:867)at testScores.TestBufferedReader1.main[
 TestBufferedReader1.java:55)
 	
-f)    When we add a column of test scores to the original number (3) the
+e)    When we add a column of test scores to the original number (3) the
 program does not finish running because it attempts to read and
 format the two numbers separated by whitespace into an integer, which throws an
 exception.
@@ -268,11 +268,19 @@ public class Add {
 	}
 }
 
+Test 1: Check program functionality. Consul ouput:
+Please enter numbers to be summed, and enter zero when you want the sum
+4
+6
+7
+0
+The sum of the numbers is: 17
+
+-> The program returns the correct sum.
+
 ii) using BufferedReader:
 
 package streamInput;
-
-
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -303,6 +311,92 @@ public class AddBuff {
 	}
 }
 
+Test 2: Test some numbers. Consul output:
+
+Please enter numbers to be summed, and enter zero when you want the sum
+5
+6
+7
+0
+The sum of the numbers is: 18
+
+-> The program returns the correct sum.
+
 8) Modify smallerQuadraticRoot, so that it tests whether coefficient a is zero. 
 If so, the method should throw an exception.
 
+package testScores;
+
+import java.lang.Math;
+import java.util.Scanner;
+import java.io.IOException;
+import java.lang.ArithmeticException;
+
+
+/* Program to read 3 numbers from keyboard, and compute the small quadratic
+   root */
+public class QuadraticRoot
+{
+  public static double smallQuadraticRoot(double a, double b, double c) 
+  throws Exception
+  	 {
+
+  	if (a == 0 || b == 0 || c==0)
+  		throw new ArithmeticException();
+
+
+	double det = (b*b)-(4*a*c);
+
+
+  	if (det >= 0) // i.e. "if roots are real"
+  		 return ( (-b  - Math.sqrt(det) )/ (2*a));
+  	else
+  		throw new Exception("Imaginary roots");
+  		}
+   
+  
+
+  public static void main (String args []) throws Exception {
+ // use FileReader object to initialize scanner
+		Scanner fileIn = new Scanner (System.in);
+
+		System.out.println("Enter 3 numbers");
+		double root1 = fileIn.nextDouble();
+		double root2 = fileIn.nextDouble();
+		double root3 = fileIn.nextDouble();
+		QuadraticRoot r = new QuadraticRoot();
+
+	try 
+	{
+  		double root = smallQuadraticRoot(root1, root2, root3);
+  		System.out.println("The smaller root of the polynomial is: " + root);
+	}
+	catch (ArithmeticException arithE) 
+    {
+      System.err.print
+      ("Cannot compute a result because the coefficient of the quadratic ");
+      System.err.println ("term is 0.");
+    }   
+    catch (Exception e) 
+	{
+  		System.err.println("Sorry, I could not compute a root.");
+  		System.err.println("Error reported: " + e);
+	}	
+
+  }
+}
+
+Test 1: test arithmetic exception by giving one of the roots as one. Consul output:
+Enter 3 numbers
+0
+3
+2
+Cannot compute a result because the coefficient of the quadratic term is 0.
+
+Test 2: test other exception (imaginary root). program output:
+Enter 3 numbers
+1
+2
+3
+Sorry, I could not compute a root.
+Error reported: java.lang.Exception: Imaginary roots

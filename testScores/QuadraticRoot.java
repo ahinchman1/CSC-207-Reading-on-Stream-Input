@@ -47,7 +47,7 @@ public class QuadraticRoot
 	catch (ArithmeticException arithE) 
     {
       System.err.print
-      ("Cannot compute a result because the coefficient of the quadratic");
+      ("Cannot compute a result because the coefficient of the quadratic ");
       System.err.println ("term is 0.");
     }   
     catch (Exception e) 
